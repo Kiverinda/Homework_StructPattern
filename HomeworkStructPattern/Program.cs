@@ -1,13 +1,19 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace HomeworkStructPattern
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.Read();
+            // create service provider
+            var serviceProvider = new ConfigurationServices().Services.BuildServiceProvider();
+
+            // entry to run app
+            await serviceProvider.GetService<App>().Run(args);
         }
     }
 }
+
+
